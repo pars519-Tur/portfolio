@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onur Aytekin | Aerospace Engineer & Researcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">OA</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="stars" id="stars"></div>
+            <div class="orbit-lines">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name">Onur Aytekin</h1>
+                <div class="hero-title-wrapper">
+                    <p class="hero-title" id="typedText"></p>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-subtitle">Bridging autonomous space systems with operational aviation experience</p>
+                <div class="hero-buttons">
+                    <a href="#research" class="btn btn-primary">View Research</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="spacecraft-container">
+                    <svg class="spacecraft-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#64B5F6"/>
+                                <stop offset="100%" style="stop-color:#1565C0"/>
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Satellite Body -->
+                        <rect x="80" y="80" width="40" height="40" rx="4" fill="url(#bodyGrad)" filter="url(#glow)"/>
+                        <!-- Solar Panels -->
+                        <rect x="15" y="88" width="58" height="24" rx="2" fill="#1E88E5" opacity="0.8"/>
+                        <rect x="127" y="88" width="58" height="24" rx="2" fill="#1E88E5" opacity="0.8"/>
+                        <!-- Panel Lines -->
+                        <line x1="34" y1="88" x2="34" y2="112" stroke="#90CAF9" stroke-width="0.5"/>
+                        <line x1="53" y1="88" x2="53" y2="112" stroke="#90CAF9" stroke-width="0.5"/>
+                        <line x1="146" y1="88" x2="146" y2="112" stroke="#90CAF9" stroke-width="0.5"/>
+                        <line x1="165" y1="88" x2="165" y2="112" stroke="#90CAF9" stroke-width="0.5"/>
+                        <!-- Antenna -->
+                        <line x1="100" y1="80" x2="100" y2="60" stroke="#90CAF9" stroke-width="1.5"/>
+                        <circle cx="100" cy="57" r="3" fill="#64B5F6" filter="url(#glow)"/>
+                        <!-- Signal waves -->
+                        <path d="M 90 50 Q 100 40 110 50" fill="none" stroke="#64B5F6" stroke-width="0.8" opacity="0.6" class="signal signal-1"/>
+                        <path d="M 85 45 Q 100 30 115 45" fill="none" stroke="#64B5F6" stroke-width="0.8" opacity="0.4" class="signal signal-2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-lead">M.S. Astronautical Engineering graduate student at the <strong>U.S. Air Force Institute of Technology (AFIT)</strong>, focused on autonomous spacecraft operations, sensor network tasking, and space situational awareness (SSA).</p>
+                    <p>My current research combines reinforcement learning with orbital mechanics to develop intelligent, autonomous systems for multi-spacecraft coordination in congested space environments. I bring a unique perspective that merges hands-on operational aviation experience with advanced computational methods for space systems engineering.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon"><i class="fas fa-satellite"></i></div>
+                            <div>
+                                <h4>Autonomous Systems</h4>
+                                <p>RL-based spacecraft coordination & sensor tasking</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon"><i class="fas fa-fighter-jet"></i></div>
+                            <div>
+                                <h4>1000+ Flight Hours</h4>
+                                <p>Operational UAV pilot on AKINCI platform</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon"><i class="fas fa-brain"></i></div>
+                            <div>
+                                <h4>AI & Space</h4>
+                                <p>Reinforcement learning, GNC, SSA/SDA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="1000">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">Flight Hours</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-label">Research Projects</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="5">0</span>
+                        <span class="stat-plus">+</span>
+                        <span class="stat-label">Years in Aerospace</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="3.8">0</span>
+                        <span class="stat-label">GPA (B.S.)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Graduate Researcher</h3>
+                                <p class="timeline-company">U.S. Air Force Institute of Technology</p>
+                            </div>
+                            <span class="timeline-date">Sep 2025 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Developed reinforcement learning-based approaches for autonomous spacecraft coordination and sensor network tasking in congested orbital environments</li>
+                            <li>Designed Python-based simulation frameworks for space situational awareness (SSA), including multi-agent task allocation and tracking</li>
+                            <li>Implemented relative orbital dynamics (HCW), numerical integration, and safety constraints for proximity operations</li>
+                            <li>Evaluated system performance using tasking efficiency, collision risk metrics, and control cost proxies</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Reinforcement Learning</span>
+                            <span class="tag">Autonomous Systems</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>UAV Pilot</h3>
+                                <p class="timeline-company">Turkish Air Force</p>
+                            </div>
+                            <span class="timeline-date">Mar 2023 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Accumulated 1000+ flight hours on AKINCI UAV in operational environments</li>
+                            <li>Executed mission planning, sensor operations, and real-time decision-making under dynamic conditions</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">AKINCI UAV</span>
+                            <span class="tag">Mission Planning</span>
+                            <span class="tag">Sensor Ops</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Aerospace Engineer</h3>
+                                <p class="timeline-company">Turkish Air Force</p>
+                            </div>
+                            <span class="timeline-date">Aug 2021 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Applied orbital mechanics and MATLAB-based analysis to aerospace and space-related engineering problems</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Orbital Mechanics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Pilot</h3>
+                                <p class="timeline-company">Turkish Air Force</p>
+                            </div>
+                            <span class="timeline-date">Aug 2021 - May 2022</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Flight training on T-41D, SF260D, KT-1T aircraft platforms</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">T-41D</span>
+                            <span class="tag">SF260D</span>
+                            <span class="tag">KT-1T</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="section research" id="research">
+        <div class="container">
+            <h2 class="section-title">Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-card-header">
+                        <div class="research-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <span class="research-status">Ongoing</span>
+                    </div>
+                    <h3>Deep Reinforcement Learning for Autonomous Multi-Spacecraft Coordination in Proximity Operations</h3>
+                    <p>Developed deep reinforcement learning-based frameworks for autonomous multi-spacecraft coordination in congested Low Earth Orbit environments.</p>
+                    <ul class="research-details">
+                        <li>Implemented Proximal Policy Optimization (PPO) within Hill-Clohessy-Wiltshire relative dynamics to enable collision avoidance and coordinated rendezvous</li>
+                        <li>Modeled realistic operational constraints including 10-second control update rates, thrust limits, and 20-meter safety zones</li>
+                        <li>Compared four coordination strategies using Monte Carlo analysis</li>
+                        <li>Demonstrated that transfer learning enables scalable multi-agent coordination without retraining, outperforming classical LQR and MPC baselines</li>
+                    </ul>
+                    <div class="research-keywords">
+                        <span>Reinforcement Learning</span>
+                        <span>Multi-Agent Coordination</span>
+                        <span>SSA/SDA</span>
+                        <span>Orbital Dynamics</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-card-header">
+                        <div class="research-icon"><i class="fas fa-globe"></i></div>
+                        <span class="research-status">Ongoing</span>
+                    </div>
+                    <h3>Space Sensor Network Tasking for SSA</h3>
+                    <p>Developed sensor network tasking strategies for space situational awareness using learning-based and optimization-driven approaches.</p>
+                    <ul class="research-details">
+                        <li>Designed frameworks for coordinating ground-based and space-based sensor networks</li>
+                        <li>Applied reinforcement learning for adaptive sensor scheduling and resource allocation</li>
+                        <li>Optimized observation planning under dynamic orbital conditions</li>
+                    </ul>
+                    <div class="research-keywords">
+                        <span>Sensor Networks</span>
+                        <span>SSA</span>
+                        <span>Optimization</span>
+                        <span>Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-card-accent"></div>
+                    <div class="education-card-content">
+                        <div class="education-degree">M.S.</div>
+                        <h3>Aerospace, Aeronautical and Astronautical/Space Engineering</h3>
+                        <p class="education-school"><i class="fas fa-university"></i> U.S. Air Force Institute of Technology</p>
+                        <p class="education-date"><i class="fas fa-calendar-alt"></i> Aug 2025 - Mar 2027</p>
+                        <div class="education-focus">
+                            <span>Spacecraft GNC</span>
+                            <span>Reinforcement Learning</span>
+                            <span>Orbital Mechanics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-card-accent"></div>
+                    <div class="education-card-content">
+                        <div class="education-degree">B.S.</div>
+                        <h3>Aerospace, Aeronautical and Astronautical Engineering</h3>
+                        <p class="education-school"><i class="fas fa-university"></i> Turkish Air Force Academy</p>
+                        <p class="education-date"><i class="fas fa-calendar-alt"></i> Sep 2017 - Aug 2021</p>
+                        <div class="education-gpa">GPA: 3.8 / 4.0</div>
+                        <div class="education-focus">
+                            <span>English</span>
+                            <span>Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-rocket"></i> Aerospace & Space</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Autonomous Space Systems</div>
+                        <div class="skill-item">Spacecraft GNC</div>
+                        <div class="skill-item">Orbital Mechanics</div>
+                        <div class="skill-item">Space Situational Awareness</div>
+                        <div class="skill-item">Proximity Operations</div>
+                        <div class="skill-item">Sensor Fusion</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming & Tools</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">MATLAB</div>
+                        <div class="skill-item">Reinforcement Learning</div>
+                        <div class="skill-item">Deep Learning</div>
+                        <div class="skill-item">Simulation & Modeling</div>
+                        <div class="skill-item">Monte Carlo Analysis</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-plane"></i> Aviation & Operations</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">UAV Operations</div>
+                        <div class="skill-item">Mission Planning</div>
+                        <div class="skill-item">Sensor Operations</div>
+                        <div class="skill-item">Real-time Decision Making</div>
+                        <div class="skill-item">Flight Operations</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Turkish <span class="skill-level">Native</span></div>
+                        <div class="skill-item">English <span class="skill-level">Professional</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-subtitle">Interested in collaboration, research opportunities, or just want to connect? Feel free to reach out.</p>
+            <div class="contact-grid">
+                <a href="https://www.linkedin.com/in/onur-aytekin-363913291/" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Connect with me</p>
+                </a>
+                <a href="mailto:onuraytekn977@hotmail.com" class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>onuraytekn977@hotmail.com</p>
+                </a>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Dayton, Ohio, United States</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-logo">OA</span>
+                <p>&copy; 2026 Onur Aytekin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
