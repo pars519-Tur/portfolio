@@ -87,11 +87,29 @@ ul {
 }
 
 .nav-logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-img {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 35%;
+    transition: var(--transition);
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.05);
+}
+
+.footer-logo-img {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 35%;
 }
 
 .nav-links {
