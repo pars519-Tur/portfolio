@@ -92,12 +92,15 @@ ul {
 }
 
 .nav-logo-img {
-    height: 42px;
-    width: 42px;
+    height: 40px;
+    width: 40px;
+    max-height: 40px;
+    max-width: 40px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center 35%;
     transition: var(--transition);
+    display: block;
 }
 
 .nav-logo-img:hover {
