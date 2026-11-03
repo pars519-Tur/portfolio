@@ -1,0 +1,106 @@
+cv:
+  name: Onur Aytekin
+  label: M.S. student, Astronautical Engineering
+  email: onuraytekn977@hotmail.com
+  location: Dayton, OH
+  image: ""
+  summary: Reinforcement learning for space autonomy, including SSA sensor tasking, spacecraft docking, and multi-spacecraft maneuver planning.
+
+  social_networks:
+    - network: LinkedIn
+      username: onur-aytekin-363913291
+    - network: GitHub
+      username: pars519-tur
+
+  sections:
+    Education:
+      - institution: Air Force Institute of Technology (AFIT)
+        location: Wright-Patterson AFB, OH
+        url: https://www.afit.edu/
+        area: Astronautical Engineering
+        studyType: M.S.
+        start_date: 2025-08
+        end_date: 2027-03
+        score: "GPA 3.98/4.0"
+        highlights:
+          - "Thesis: reinforcement learning for SSA sensor-network tasking, incorporating maneuvering spacecraft into training data and policy design. Advisor: Maj. Kullen Waggoner, Ph.D."
+          - "Coursework: Reinforcement Learning, Artificial Intelligence, Spacecraft Maneuver & Rendezvous, Orbit Determination (Kalman Filtering), Space Surveillance"
+          - "Elected to Tau Beta Pi, the engineering honor society"
+
+      - institution: Turkish Air Force Academy
+        location: Türkiye
+        area: Aerospace and Astronautical Engineering
+        studyType: B.S.
+        start_date: 2017
+        end_date: 2021
+        score: "GPA 3.82/4.0"
+
+    Experience:
+      - company: Air Force Institute of Technology
+        position: Graduate Researcher, Space Autonomy & Reinforcement Learning
+        location: Wright-Patterson AFB, OH
+        start_date: 2025-08
+        highlights:
+          - "Deep-RL policies for SSA sensor-network tasking with maneuvering objects (M.S. thesis)"
+          - "PPO agents for offset-port docking under coupled 6-DOF dynamics with J2; docked with targets tumbling up to 2.5 deg/s, beyond a classical PD baseline (~1 deg/s)"
+          - "MAPPO framework for cooperative multi-spacecraft proximity operations under HCW dynamics; 100% task success at the final checkpoint"
+
+      - company: Turkish Air Force
+        position: UAV Pilot
+        location: Türkiye
+        start_date: 2023-03
+        highlights:
+          - "1,000+ flight hours in operational environments"
+
+      - company: Turkish Air Force
+        position: Aerospace Engineer
+        location: Türkiye
+        start_date: 2021-08
+
+      - company: Turkish Air Force
+        position: Pilot
+        location: Türkiye
+        start_date: 2021
+        end_date: 2023
+
+    Awards:
+      - title: Tau Beta Pi, The Engineering Honor Society
+        date: 2026-10
+        awarder: Tau Beta Pi, AFIT chapter
+        summary: Elected member
+
+    Publications:
+      - title: Reinforcement Learning for Offset-Port Autonomous Docking with Coupled Rotational–Translational Dynamics in Low Earth Orbit
+        authors:
+          - Onur Aytekin
+          - Kullen Waggoner
+          - Murat Bagci
+          - Aybar Avci
+        publisher: 77th International Astronautical Congress (IAC), oral presentation
+        releaseDate: 2026-10-08
+
+      - title: Learning-Based Cooperative Maneuver Planning for Multi-Spacecraft Proximity Operations
+        authors:
+          - Onur Aytekin
+          - Kullen Waggoner
+          - N. E. Ergin
+        publisher: IEEE National Aerospace & Electronics Conference (NAECON)
+        releaseDate: 2026-08
+        url: https://doi.org/10.1109/NAECON70028.2026.11674936
+
+    Skills:
+      - name: Reinforcement learning
+        icon: fa-solid fa-robot
+        keywords: "PPO, SAC, MAPPO, CTDE, behavior cloning, reward shaping"
+      - name: Software
+        icon: fa-solid fa-code
+        keywords: "Python, PyTorch, TensorFlow, Ray RLlib, Gymnasium, Stable-Baselines3, Weights & Biases, MATLAB, Git, LaTeX"
+      - name: Astrodynamics
+        icon: fa-solid fa-satellite
+        keywords: "HCW relative motion, coupled 6-DOF dynamics, J2 perturbations, orbit determination, Kalman filtering, SSA/SDA, rendezvous and proximity operations"
+
+    Languages:
+      - name: Turkish
+        summary: Native
+      - name: English
+        summary: Professional working proficiency
