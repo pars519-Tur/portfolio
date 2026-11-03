@@ -1,173 +1,219 @@
-// ===== Navbar Scroll Effect =====
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-});
+// Sensor-tasking illustration
+// Three ground sensors on a rotating Earth (top-down view) each observe one
+// visible object per tasking step. Unobserved objects' uncertainty grows;
+// observation shrinks it. Occasionally an object maneuvers to a new orbit and
+// its uncertainty grows faster until a sensor reacquires it.
+(function () {
+    const canvas = document.getElementById('sim');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ===== Mobile Navigation =====
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
+    let W = 0, H = 0, cx = 0, cy = 0, R = 0, dpr = 1;
+    let colors = {};
 
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-    });
-});
-
-// ===== Stars Background =====
-function createStars() {
-    const starsContainer = document.getElementById('stars');
-    const count = 120;
-    for (let i = 0; i < count; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
-        star.style.setProperty('--min-opacity', (0.1 + Math.random() * 0.3).toString());
-        star.style.setProperty('--max-opacity', (0.5 + Math.random() * 0.5).toString());
-        star.style.animationDelay = Math.random() * 4 + 's';
-        star.style.width = (1 + Math.random() * 2) + 'px';
-        star.style.height = star.style.width;
-        starsContainer.appendChild(star);
-    }
-}
-createStars();
-
-// ===== Typing Effect =====
-const titles = [
-    'M.S. Astronautical Engineering @ AFIT',
-    'Autonomous Spacecraft Operations',
-    'Reinforcement Learning Researcher',
-    'UAV Pilot | 1000+ Flight Hours',
-    'Space Situational Awareness'
-];
-
-let titleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typedText = document.getElementById('typedText');
-
-function type() {
-    const current = titles[titleIndex];
-
-    if (isDeleting) {
-        typedText.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typedText.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
+    function readColors() {
+        const cs = getComputedStyle(document.documentElement);
+        const v = (n) => cs.getPropertyValue(n).trim();
+        colors = {
+            ink: v('--ink'), slate: v('--slate'), signal: v('--signal'),
+            maneuver: v('--maneuver'), orbit: v('--orbit'), paper2: v('--paper-2'), rule: v('--rule'),
+        };
     }
 
-    let speed = isDeleting ? 30 : 60;
-
-    if (!isDeleting && charIndex === current.length) {
-        speed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        titleIndex = (titleIndex + 1) % titles.length;
-        speed = 400;
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        W = rect.width; H = rect.height;
+        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        cx = W / 2; cy = H / 2;
+        R = Math.min(W, H) * 0.2;
     }
 
-    setTimeout(type, speed);
-}
-type();
+    // Deterministic RNG so the scene looks the same on each load
+    let seed = 7;
+    const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 
-// ===== Scroll Animations =====
-function setupScrollAnimations() {
-    const elements = document.querySelectorAll(
-        '.timeline-item, .research-card, .pub-item, .education-card, .skill-category, .contact-card, .highlight-item, .stat-card'
-    );
-
-    elements.forEach(el => el.classList.add('fade-in'));
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+    const N = 36;
+    const SHELLS = [1.35, 1.6, 1.9, 2.2];
+    const objects = [];
+    for (let i = 0; i < N; i++) {
+        const shell = SHELLS[Math.floor(rand() * SHELLS.length)];
+        const r = shell + (rand() - 0.5) * 0.12;
+        objects.push({
+            r, rTarget: r,
+            th: rand() * Math.PI * 2,
+            dir: rand() < 0.85 ? 1 : -1,
+            u: 0.2 + rand() * 0.6,     // normalized uncertainty, 0..1
+            maneuvering: false,
+            lost: false,               // maneuvered and not yet reacquired
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }
 
-    elements.forEach(el => observer.observe(el));
-}
-setupScrollAnimations();
+    const sensorLon = [0.3, 2.4, 4.3];
+    let earthRot = 0;
+    let tasks = [];                // [{s, o, t}]
+    let sinceTask = 0, sinceManeuver = 2.5;
 
-// ===== Counter Animation =====
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.dataset.animated) {
-                entry.target.dataset.animated = 'true';
-                const target = parseFloat(entry.target.dataset.target);
-                const isDecimal = target % 1 !== 0;
-                const decimals = isDecimal ? (entry.target.dataset.target.split('.')[1] || '').length : 0;
-                const duration = 1500;
-                const startTime = performance.now();
+    const TASK_DT = 0.55;          // s between tasking decisions
+    const GROW = 0.055;            // uncertainty growth per s
+    const GROW_LOST = 0.22;
 
-                function update(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const current = eased * target;
+    function omega(r) { return 0.38 * Math.pow(r / 1.35, -1.5); }  // Kepler-ish
 
-                    entry.target.textContent = isDecimal
-                        ? current.toFixed(decimals)
-                        : Math.floor(current);
+    function pos(o) {
+        return [cx + Math.cos(o.th) * o.r * R, cy + Math.sin(o.th) * o.r * R];
+    }
+    function sensorPos(k) {
+        const a = sensorLon[k] + earthRot;
+        return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R, nx: Math.cos(a), ny: Math.sin(a) };
+    }
+    function visible(s, o) {
+        const [x, y] = pos(o);
+        return (x - s.x) * s.nx + (y - s.y) * s.ny > R * 0.08;
+    }
 
-                    if (progress < 1) {
-                        requestAnimationFrame(update);
-                    } else {
-                        entry.target.textContent = isDecimal
-                            ? target.toFixed(decimals)
-                            : target;
-                    }
+    function step(dt) {
+        earthRot += dt * 0.07;
+        for (const o of objects) {
+            o.th += o.dir * omega(o.r) * dt;
+            if (o.maneuvering) {
+                o.r += (o.rTarget - o.r) * Math.min(1, dt * 0.9);
+                if (Math.abs(o.rTarget - o.r) < 0.01) { o.r = o.rTarget; o.maneuvering = false; }
+            }
+            o.u = Math.min(1, o.u + (o.lost ? GROW_LOST : GROW) * dt);
+        }
+
+        sinceManeuver += dt;
+        if (sinceManeuver > 5.5) {
+            sinceManeuver = 0;
+            const candidates = objects.filter(o => !o.lost);
+            const o = candidates[Math.floor(rand() * candidates.length)];
+            const shells = SHELLS.filter(s => Math.abs(s - o.r) > 0.2);
+            o.rTarget = shells[Math.floor(rand() * shells.length)];
+            o.maneuvering = true; o.lost = true;
+        }
+
+        sinceTask += dt;
+        if (sinceTask > TASK_DT) {
+            sinceTask = 0;
+            const taken = new Set();
+            tasks = [];
+            for (let k = 0; k < sensorLon.length; k++) {
+                const s = sensorPos(k);
+                let best = -1, bestU = -1;
+                objects.forEach((o, i) => {
+                    if (!taken.has(i) && visible(s, o) && o.u > bestU) { best = i; bestU = o.u; }
+                });
+                if (best >= 0) {
+                    taken.add(best);
+                    tasks.push({ s: k, o: best, t: 0 });
+                    const o = objects[best];
+                    o.u = 0.06;
+                    if (!o.maneuvering) o.lost = false;
                 }
-                requestAnimationFrame(update);
             }
+        }
+        for (const t of tasks) t.t += dt;
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Orbit shells
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = colors.orbit;
+        for (const s of SHELLS) {
+            ctx.beginPath(); ctx.arc(cx, cy, s * R, 0, Math.PI * 2); ctx.stroke();
+        }
+
+        // Earth
+        ctx.fillStyle = colors.paper2;
+        ctx.strokeStyle = colors.rule;
+        ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        // a few meridians to show rotation
+        ctx.strokeStyle = colors.orbit;
+        for (let m = 0; m < 6; m++) {
+            const a = earthRot + m * Math.PI / 3;
+            ctx.beginPath(); ctx.moveTo(cx, cy);
+            ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R); ctx.stroke();
+        }
+
+        // Tasking lines
+        for (const t of tasks) {
+            const s = sensorPos(t.s);
+            const [x, y] = pos(objects[t.o]);
+            const fade = Math.max(0, 1 - t.t / (TASK_DT * 1.1));
+            ctx.globalAlpha = 0.25 + 0.6 * fade;
+            ctx.strokeStyle = colors.signal;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(x, y); ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+
+        // Objects with uncertainty rings
+        for (const o of objects) {
+            const [x, y] = pos(o);
+            const c = o.lost ? colors.maneuver : colors.ink;
+            const ring = 3 + o.u * R * 0.3;
+            ctx.strokeStyle = c;
+            ctx.globalAlpha = o.lost ? 0.75 : 0.18 + 0.4 * o.u;
+            ctx.lineWidth = o.lost ? 1.5 : 1;
+            ctx.beginPath(); ctx.arc(x, y, ring, 0, Math.PI * 2); ctx.stroke();
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = c;
+            ctx.beginPath(); ctx.arc(x, y, o.lost ? 3.6 : 2.4, 0, Math.PI * 2); ctx.fill();
+        }
+
+        // Sensors
+        for (let k = 0; k < sensorLon.length; k++) {
+            const s = sensorPos(k);
+            ctx.fillStyle = colors.signal;
+            ctx.beginPath(); ctx.arc(s.x, s.y, 5, 0, Math.PI * 2); ctx.fill();
+        }
+    }
+
+    let last = 0, running = false, onScreen = true;
+    function frame(ts) {
+        if (!running) return;
+        const dt = Math.min(0.05, (ts - last) / 1000 || 0);
+        last = ts;
+        step(dt); draw();
+        requestAnimationFrame(frame);
+    }
+    function start() {
+        if (running || reduceMotion || !onScreen || document.hidden) return;
+        running = true; last = performance.now(); requestAnimationFrame(frame);
+    }
+    function stop() { running = false; }
+
+    readColors(); resize();
+    // warm up so the first frame already shows varied uncertainty
+    for (let i = 0; i < 400; i++) step(0.05);
+    draw();
+
+    window.addEventListener('resize', () => { resize(); draw(); });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); draw(); });
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        onScreen ? start() : stop();
+    }).observe(canvas);
+    start();
+})();
+
+// Highlight the current section in the nav
+(function () {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            links.forEach(a => a.removeAttribute('aria-current'));
+            const a = links.find(l => l.getAttribute('href') === '#' + e.target.id);
+            if (a) a.setAttribute('aria-current', 'true');
         });
-    }, { threshold: 0.5 });
-
-    counters.forEach(c => observer.observe(c));
-}
-animateCounters();
-
-// ===== Active Nav Link Highlight =====
-const sections = document.querySelectorAll('.section');
-const navLinksAll = document.querySelectorAll('.nav-links a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinksAll.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === '#' + current) {
-            link.style.color = 'var(--accent)';
-        }
-    });
-});
-
-// ===== Smooth Scroll for all anchor links =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => io.observe(s));
+})();
