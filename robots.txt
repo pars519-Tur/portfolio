@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://pars519-tur.github.io/portfolio/sitemap.xml
