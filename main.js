@@ -83,7 +83,7 @@ type();
 // ===== Scroll Animations =====
 function setupScrollAnimations() {
     const elements = document.querySelectorAll(
-        '.timeline-item, .research-card, .education-card, .skill-category, .contact-card, .highlight-item, .stat-card'
+        '.timeline-item, .research-card, .pub-item, .education-card, .skill-category, .contact-card, .highlight-item, .stat-card'
     );
 
     elements.forEach(el => el.classList.add('fade-in'));
@@ -109,6 +109,7 @@ function animateCounters() {
                 entry.target.dataset.animated = 'true';
                 const target = parseFloat(entry.target.dataset.target);
                 const isDecimal = target % 1 !== 0;
+                const decimals = isDecimal ? (entry.target.dataset.target.split('.')[1] || '').length : 0;
                 const duration = 1500;
                 const startTime = performance.now();
 
@@ -119,14 +120,14 @@ function animateCounters() {
                     const current = eased * target;
 
                     entry.target.textContent = isDecimal
-                        ? current.toFixed(1)
+                        ? current.toFixed(decimals)
                         : Math.floor(current);
 
                     if (progress < 1) {
                         requestAnimationFrame(update);
                     } else {
                         entry.target.textContent = isDecimal
-                            ? target.toFixed(1)
+                            ? target.toFixed(decimals)
                             : target;
                     }
                 }

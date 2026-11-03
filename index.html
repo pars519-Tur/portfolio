@@ -22,6 +22,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -50,7 +51,7 @@
                 <p class="hero-subtitle">Bridging autonomous space systems with operational aviation experience</p>
                 <div class="hero-buttons">
                     <a href="#research" class="btn btn-primary">View Research</a>
-                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                    <a href="Onur_Aytekin_CV.pdf" class="btn btn-outline" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> Download CV</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -102,13 +103,13 @@
             <div class="about-content">
                 <div class="about-text">
                     <p class="about-lead">M.S. Astronautical Engineering graduate student at the <strong>U.S. Air Force Institute of Technology (AFIT)</strong>, focused on autonomous spacecraft operations, sensor network tasking, and space situational awareness (SSA).</p>
-                    <p>My current research combines reinforcement learning with orbital mechanics to develop intelligent, autonomous systems for multi-spacecraft coordination in congested space environments. I bring a unique perspective that merges hands-on operational aviation experience with advanced computational methods for space systems engineering.</p>
+                    <p>My research applies deep reinforcement learning to space autonomy: tasking SSA sensor networks around maneuvering objects, autonomous docking with tumbling targets under coupled 6-DOF dynamics, and cooperative multi-spacecraft maneuver planning. This work has been presented at the International Astronautical Congress (IAC 2026) and IEEE NAECON 2026. I bring a unique perspective that merges hands-on operational aviation experience with advanced computational methods for space systems engineering.</p>
                     <div class="about-highlights">
                         <div class="highlight-item">
                             <div class="highlight-icon"><i class="fas fa-satellite"></i></div>
                             <div>
                                 <h4>Autonomous Systems</h4>
-                                <p>RL-based spacecraft coordination & sensor tasking</p>
+                                <p>RL for sensor tasking, docking & multi-spacecraft planning</p>
                             </div>
                         </div>
                         <div class="highlight-item">
@@ -134,7 +135,7 @@
                         <span class="stat-label">Flight Hours</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-number" data-target="4">0</span>
                         <span class="stat-label">Research Projects</span>
                     </div>
                     <div class="stat-card">
@@ -143,8 +144,8 @@
                         <span class="stat-label">Years in Aerospace</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-target="3.8">0</span>
-                        <span class="stat-label">GPA (B.S.)</span>
+                        <span class="stat-number" data-target="3.98">0</span>
+                        <span class="stat-label">GPA (M.S.)</span>
                     </div>
                 </div>
             </div>
@@ -164,18 +165,19 @@
                                 <h3>Graduate Researcher</h3>
                                 <p class="timeline-company">U.S. Air Force Institute of Technology</p>
                             </div>
-                            <span class="timeline-date">Sep 2025 - Present</span>
+                            <span class="timeline-date">Aug 2025 - Present</span>
                         </div>
                         <ul class="timeline-details">
-                            <li>Developed reinforcement learning-based approaches for autonomous spacecraft coordination and sensor network tasking in congested orbital environments</li>
-                            <li>Designed Python-based simulation frameworks for space situational awareness (SSA), including multi-agent task allocation and tracking</li>
-                            <li>Implemented relative orbital dynamics (HCW), numerical integration, and safety constraints for proximity operations</li>
-                            <li>Evaluated system performance using tasking efficiency, collision risk metrics, and control cost proxies</li>
+                            <li>Developing deep-RL policies for SSA sensor-network tasking, incorporating maneuvering spacecraft into training data and policy design (M.S. thesis)</li>
+                            <li>Built a custom Gymnasium environment for 6-DOF offset-port docking under J2; PPO agents docked with targets tumbling up to 2.5 deg/s, beyond a classical PD baseline (~1 deg/s)</li>
+                            <li>Developed a MAPPO framework (centralized training, decentralized execution) for cooperative multi-spacecraft proximity operations under HCW dynamics</li>
+                            <li>First-author papers at IAC 2026 (oral presentation) and IEEE NAECON 2026</li>
                         </ul>
                         <div class="timeline-tags">
                             <span class="tag">Reinforcement Learning</span>
-                            <span class="tag">Autonomous Systems</span>
+                            <span class="tag">PyTorch</span>
                             <span class="tag">Python</span>
+                            <span class="tag">MATLAB</span>
                         </div>
                     </div>
                 </div>
@@ -230,7 +232,7 @@
                                 <h3>Pilot</h3>
                                 <p class="timeline-company">Turkish Air Force</p>
                             </div>
-                            <span class="timeline-date">Aug 2021 - May 2022</span>
+                            <span class="timeline-date">2021 - 2023</span>
                         </div>
                         <ul class="timeline-details">
                             <li>Flight training on T-41D, SF260D, KT-1T aircraft platforms</li>
@@ -253,46 +255,103 @@
             <div class="research-grid">
                 <div class="research-card">
                     <div class="research-card-header">
-                        <div class="research-icon"><i class="fas fa-satellite-dish"></i></div>
-                        <span class="research-status">Ongoing</span>
+                        <div class="research-icon"><i class="fas fa-globe"></i></div>
+                        <span class="research-status">M.S. Thesis · Ongoing</span>
                     </div>
-                    <h3>Deep Reinforcement Learning for Autonomous Multi-Spacecraft Coordination in Proximity Operations</h3>
-                    <p>Developed deep reinforcement learning-based frameworks for autonomous multi-spacecraft coordination in congested Low Earth Orbit environments.</p>
+                    <h3>Reinforcement Learning for SSA Sensor-Network Tasking</h3>
+                    <p>Deep-RL policies for tasking a ground-based Space Situational Awareness sensor network, extended to dynamic catalogs with maneuvering resident space objects.</p>
                     <ul class="research-details">
-                        <li>Implemented Proximal Policy Optimization (PPO) within Hill-Clohessy-Wiltshire relative dynamics to enable collision avoidance and coordinated rendezvous</li>
-                        <li>Modeled realistic operational constraints including 10-second control update rates, thrust limits, and 20-meter safety zones</li>
-                        <li>Compared four coordination strategies using Monte Carlo analysis</li>
-                        <li>Demonstrated that transfer learning enables scalable multi-agent coordination without retraining, outperforming classical LQR and MPC baselines</li>
+                        <li>Formulating sensor-to-target assignment as a sequential decision problem</li>
+                        <li>Incorporating maneuvering spacecraft into training data and policy design</li>
+                        <li>Implementing simulation and training infrastructure in Python and MATLAB</li>
                     </ul>
                     <div class="research-keywords">
                         <span>Reinforcement Learning</span>
-                        <span>Multi-Agent Coordination</span>
                         <span>SSA/SDA</span>
-                        <span>Orbital Dynamics</span>
+                        <span>Sensor Networks</span>
                         <span>Python</span>
+                        <span>MATLAB</span>
                     </div>
                 </div>
-
                 <div class="research-card">
                     <div class="research-card-header">
-                        <div class="research-icon"><i class="fas fa-globe"></i></div>
-                        <span class="research-status">Ongoing</span>
+                        <div class="research-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="research-status">Course Project</span>
                     </div>
-                    <h3>Space Sensor Network Tasking for SSA</h3>
-                    <p>Developed sensor network tasking strategies for space situational awareness using learning-based and optimization-driven approaches.</p>
+                    <h3>Robustness of RL Sensor Tasking to Unpredicted Maneuvers</h3>
+                    <p>Stress-testing a pretrained PPO sensor-tasking policy against maneuvers it never saw during training.</p>
                     <ul class="research-details">
-                        <li>Designed frameworks for coordinating ground-based and space-based sensor networks</li>
-                        <li>Applied reinforcement learning for adaptive sensor scheduling and resource allocation</li>
-                        <li>Optimized observation planning under dynamic orbital conditions</li>
+                        <li>Maneuver-injection module that perturbs truth trajectories while leaving the estimator unaware</li>
+                        <li>Zero-shot comparison of PPO against a greedy heuristic (3 sensors, ~100 objects) across maneuver rates</li>
+                        <li>Tail-focused metrics: 90th-percentile covariance, unobserved maneuvering objects, reacquisition time</li>
                     </ul>
                     <div class="research-keywords">
-                        <span>Sensor Networks</span>
-                        <span>SSA</span>
-                        <span>Optimization</span>
-                        <span>Machine Learning</span>
+                        <span>Robustness</span>
+                        <span>PPO</span>
+                        <span>Ray RLlib</span>
+                        <span>TensorFlow</span>
+                    </div>
+                </div>
+                <div class="research-card">
+                    <div class="research-card-header">
+                        <div class="research-icon"><i class="fas fa-satellite"></i></div>
+                        <span class="research-status">IAC 2026 · Oral</span>
+                    </div>
+                    <h3>RL-Based Autonomous Spacecraft Docking</h3>
+                    <p>Offset-port docking formulated as an MDP with fully coupled 6-DOF rotational–translational dynamics under J2 perturbations.</p>
+                    <ul class="research-details">
+                        <li>Captures attitude–position coupling neglected by decoupled Clohessy–Wiltshire formulations</li>
+                        <li>Custom Gymnasium environment with docking-corridor constraints, thruster limits, and structured reward shaping; sweeps tracked in Weights &amp; Biases</li>
+                        <li>PPO agents dock with targets tumbling up to 2.5 deg/s, where a classical PD baseline fails beyond ~1 deg/s, at a quantified fuel cost (~3–3.6 vs. 1–2 m/s Δv)</li>
+                    </ul>
+                    <div class="research-keywords">
+                        <span>PPO</span>
+                        <span>PyTorch</span>
+                        <span>Gymnasium</span>
+                        <span>6-DOF Dynamics</span>
+                        <span>J2</span>
+                    </div>
+                </div>
+                <div class="research-card">
+                    <div class="research-card-header">
+                        <div class="research-icon"><i class="fas fa-satellite-dish"></i></div>
+                        <span class="research-status">IEEE NAECON 2026</span>
+                    </div>
+                    <h3>Multi-Agent Cooperative Spacecraft Maneuver Planning</h3>
+                    <p>MAPPO framework with centralized training and decentralized execution for cooperative multi-spacecraft proximity operations.</p>
+                    <ul class="research-details">
+                        <li>Hill–Clohessy–Wiltshire dynamics, benchmarked against an LQR + artificial-potential-field baseline</li>
+                        <li>Behavior-cloning warm start; diagnosed and resolved a mid-training policy collapse, reaching 100% task success at the final checkpoint</li>
+                        <li>Validated with Wilson score intervals, McNemar tests, and bootstrap confidence intervals</li>
+                    </ul>
+                    <div class="research-keywords">
+                        <span>MAPPO</span>
+                        <span>Multi-Agent RL</span>
+                        <span>CTDE</span>
+                        <span>Behavior Cloning</span>
+                        <span>HCW</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section publications" id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <span class="pub-venue">IAC 2026</span>
+                    <p class="pub-title">Reinforcement Learning for Offset-Port Autonomous Docking with Coupled Rotational–Translational Dynamics in Low Earth Orbit</p>
+                    <p class="pub-meta"><strong>Aytekin, O.</strong>, Waggoner, K., Bagci, M., Avci, A. · 77th International Astronautical Congress, Antalya, Türkiye, Oct 2026 · Oral presentation</p>
+                </li>
+                <li class="pub-item">
+                    <span class="pub-venue">IEEE NAECON 2026</span>
+                    <p class="pub-title">Learning-Based Cooperative Maneuver Planning for Multi-Spacecraft Proximity Operations</p>
+                    <p class="pub-meta"><strong>Aytekin, O.</strong>, Waggoner, K., Ergin, N. E. · IEEE National Aerospace &amp; Electronics Conference, Cincinnati, OH, Aug 2026 · <a href="https://doi.org/10.1109/NAECON70028.2026.11674936" target="_blank" rel="noopener">DOI</a></p>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -305,13 +364,16 @@
                     <div class="education-card-accent"></div>
                     <div class="education-card-content">
                         <div class="education-degree">M.S.</div>
-                        <h3>Aerospace, Aeronautical and Astronautical/Space Engineering</h3>
+                        <h3>Astronautical Engineering</h3>
                         <p class="education-school"><i class="fas fa-university"></i> U.S. Air Force Institute of Technology</p>
-                        <p class="education-date"><i class="fas fa-calendar-alt"></i> Aug 2025 - Mar 2027</p>
+                        <p class="education-date"><i class="fas fa-calendar-alt"></i> Aug 2025 - Mar 2027 (expected)</p>
+                        <div class="education-gpa">GPA: 3.98 / 4.0</div>
+                        <p class="education-school"><i class="fas fa-award"></i> Elected to Tau Beta Pi, The Engineering Honor Society</p>
                         <div class="education-focus">
-                            <span>Spacecraft GNC</span>
                             <span>Reinforcement Learning</span>
-                            <span>Orbital Mechanics</span>
+                            <span>Spacecraft Rendezvous</span>
+                            <span>Orbit Determination</span>
+                            <span>Space Domain Awareness</span>
                         </div>
                     </div>
                 </div>
@@ -323,7 +385,7 @@
                         <h3>Aerospace, Aeronautical and Astronautical Engineering</h3>
                         <p class="education-school"><i class="fas fa-university"></i> Turkish Air Force Academy</p>
                         <p class="education-date"><i class="fas fa-calendar-alt"></i> Sep 2017 - Aug 2021</p>
-                        <div class="education-gpa">GPA: 3.8 / 4.0</div>
+                        <div class="education-gpa">GPA: 3.82 / 4.0</div>
                         <div class="education-focus">
                             <span>English</span>
                             <span>Leadership</span>
@@ -355,9 +417,21 @@
                     <div class="skill-items">
                         <div class="skill-item">Python</div>
                         <div class="skill-item">MATLAB</div>
-                        <div class="skill-item">Reinforcement Learning</div>
-                        <div class="skill-item">Deep Learning</div>
-                        <div class="skill-item">Simulation & Modeling</div>
+                        <div class="skill-item">PyTorch</div>
+                        <div class="skill-item">Gymnasium</div>
+                        <div class="skill-item">Stable-Baselines3</div>
+                        <div class="skill-item">Weights &amp; Biases</div>
+                        <div class="skill-item">Git</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Deep RL (PPO, SAC)</div>
+                        <div class="skill-item">Multi-Agent RL (MAPPO)</div>
+                        <div class="skill-item">Behavior Cloning</div>
+                        <div class="skill-item">Reward Shaping</div>
+                        <div class="skill-item">Statistical Evaluation</div>
                         <div class="skill-item">Monte Carlo Analysis</div>
                     </div>
                 </div>
@@ -397,6 +471,11 @@
                     <i class="fas fa-envelope"></i>
                     <h3>Email</h3>
                     <p>onuraytekn977@hotmail.com</p>
+                </a>
+                <a href="Onur_Aytekin_CV.pdf" target="_blank" rel="noopener" class="contact-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>CV</h3>
+                    <p>Download PDF</p>
                 </a>
                 <div class="contact-card">
                     <i class="fas fa-map-marker-alt"></i>
